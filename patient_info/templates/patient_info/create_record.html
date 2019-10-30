@@ -1,0 +1,54 @@
+{%extends 'base.html' %}
+{% load static %}
+{% block title %}Запись {{record.current_date}}{% endblock %}
+
+{% block main_content %}
+
+
+    <div class="col-6 col-md-12">
+
+            <div class="mt-3">
+                    {% if patient.srisk %}
+                            <div class="m-2 p-2 col-6  col-md-8 border border-danger rounded shadow-sm alarm-card mx-auto">                        
+                                        <h5 class="title"><img src="{% static 'img/gallows1.svg' %}" alt="My image" width='40px'> Пациент с суицидальным риском</h5>
+                                        <ul>
+                                            <li>Рядом не должно быть острых предметов</li><hr>
+                                            <li>Следить за временем, проведенным в туалете</li><hr>
+                                            <li>Не оставлять одного</li>
+                                        </ul>
+                                </div>
+                            
+                    {% endif %}
+                    {% if patient.drisk %}
+                        <div class="m-2 p-2 col-6  col-md-8 border border-warning rounded shadow-sm alarm-card mx-auto">                        
+                                    <h5 class="title"><img src="{% static 'img/accident.png' %}" alt="My image" width='40px'> Пациент с риском падения</h5>
+                                    <ul>
+                                        <li>При необходимости помогать подниматься с кровати</li><hr>
+                                        <li>Сопровождать во время движения</li><hr>
+                                    </ul>
+                            </div>
+                            
+                    {% endif %}
+                    {% if patient.self_harm %}
+                        <div class="m-2 p-2 col-6 col-md-8 border border-dark rounded shadow-sm alarm-card mx-auto">                        
+                                    <h5 class="title"><img src="{% static 'img/self-harm1.svg' %}" alt="My image" width='40px'> Риск самоповреждения</h5>
+                                    <ul>
+                                        <li>Рядом не должно быть острых предметов</li><hr>
+                                        <li>Следить за временем, проведенным в туалете</li><hr>
+                                        <li>После еды убирать вилки и ножи</li>
+                                    </ul>
+                            </div>
+                            
+                    {% endif %}
+                </div>
+
+            <h1>Создать запись для пациента {{patient_name}}:</h1>
+        <form method="post">{% csrf_token %}
+            {{ form.as_p }}        
+            <input type="submit" value="Save" class="btn btn-primary">
+        </form>
+        <a href={% url "PatientDetail" patient_id %} class="btn btn-primary">Назад</a>
+    </div>  
+    
+
+{% endblock %}

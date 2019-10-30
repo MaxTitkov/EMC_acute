@@ -1,0 +1,13 @@
+{%extends 'base.html' %}
+{% load static %}
+{% block title %}Запись {{record.current_date}}{% endblock %}
+
+{% block main_content %}
+    <h1>Запись ИП от {{record.current_date|date:"d-m-Y H:i"}}:</h1>
+    <p>ФИО пациента: {{patient.fullname}}</p>
+    <p>Комментарии: {{record.record}}</p>
+    <p>Суицидальный риск: {{record.get_suicidal_risk_display}}</p>
+
+    <a href={% url "RecordUpdate" patient.id record.pk %} class="btn btn-primary">Изменить запись</a>
+    <a href={% url "PatientDetail" patient.id %} class="btn btn-primary">Назад</a>
+{% endblock %}

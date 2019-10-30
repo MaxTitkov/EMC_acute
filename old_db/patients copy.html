@@ -1,0 +1,22 @@
+{%extends 'patient_info/base.html' %}
+{% load static %}
+{% block title %}Patients{% endblock %}
+
+{% block main_content %}
+    <div class="patients-container">
+        <h1>Список пациентов:</h1>
+        <ul>
+            {% for patient in patients %}
+                    {% if patient.is_active %}
+                        <li><span class="badge badge badge-secondary">{{patient.room}} п.</span> <a href={% url "PatientDetail" patient.id %}>{{patient.fullname}}</a>
+                    {% else %}
+                        <li><a href={% url "PatientDetail" patient.id %}>{{patient.fullname}}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+
+    <a href={% url "PatientCreate" %} class="btn btn-primary">Создать пациента</a>
+{% endblock %}

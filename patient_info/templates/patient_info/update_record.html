@@ -1,0 +1,12 @@
+{%extends 'base.html' %}
+{% load static %}
+{% block title %}Запись {{record.current_date}}{% endblock %}
+
+{% block main_content %}
+    <h1>Изменить данные записи: {{patient.fullname}}</h1>
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Registration{% endblock %}
+
+{% block main_content %}
+
+  <h1>Регистрация</h1>
+
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form method="POST" class="registration">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <input type="submit" name="submit" class="Register">
+    </form>
+{% endblock %}

@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css?family=Anonymous+Pro|Comfortaa|Cousine|Open+Sans+Condensed:300|Oswald|PT+Sans+Narrow|Poiret+One|Source+Code+Pro|Yanone+Kaffeesatz&display=swap');
+
+.patients-container{
+    min-height: 500px;
+    height: 90vh;
+    overflow: auto;
+}
+
+.delete:link{
+    font-family: 'PT Sans Narrow', sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+.patients-header{
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+/* .alarm-card{
+    max-width: 45%!important;
+} */
+
+h1, h2{
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+
+.patient-elem{
+    margin-left: -41px;
+}
+
+.active-patient-elem a{
+    font-family: 'Anonymous Pro', monospace;
+    color: black;
+    font-size: 18px;
+}
+
+.inactive-patient-elem a{
+    font-family: 'Anonymous Pro', monospace;
+    color: black;
+}
+
+.btn{
+    font-family: 'Source Code Pro', monospace;
+}
+
+li{
+    list-style: none;
+}
+
+.search-results{
+    text-decoration: none;
+    color: black;
+}
+
+.search-container{
+    background-color: white;
+    border: solid 1px black;
+    margin-left: -41px;
+    width: 300px;
+    padding: 5px;
+}
+
+.search-input{
+    max-width: 300px!important;
+}
+
+/* LOGIN */
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 200px auto;
+  }
+
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }

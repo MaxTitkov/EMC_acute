@@ -1,0 +1,13 @@
+{% if patients.count > 0 %}
+    <div class="search-container">
+        {%for patient in patients%}
+        <li><a href="/patients/{{patient.id}}" class="search-results">{{patient.fullname}}</a></li>
+        {% endfor %}   
+    </div>
+    
+
+{% else %}
+
+    <li>None to show!</li>
+
+{% endif %}

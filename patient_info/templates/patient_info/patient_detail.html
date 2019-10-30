@@ -1,0 +1,49 @@
+{%extends 'base.html' %}
+{% load static %}
+{% block title %}{{patient.fullname}}{% endblock %}
+
+{% block main_content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    {% if message.tags != 'success' %}
+        <div class="alert {{message.tags}}" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ message }}
+        </div>
+    {% else %}
+        <div class="alert alert-success" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ message }}
+        </div>
+    {% endif %}
+    
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+    <h2>Пациент {{patient.fullname}}  {{patient.age}} лет ({{patient.dob|date:"d-m-Y"}}) --  палата №{{patient.room}}</h2>
+    <ul class="list-group" style="width: 50%;"> 
+        {% for record in records %}
+
+        <a href= {% url "RecordDetail" patient.id record.id %} class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Запись индивидуального поста</h5>
+                  <small>{{record.current_date|timesince}}</small>
+                </div>
+                <small>{{record.current_date|date:"d-m-Y H:i"}}</small>
+                {% if record.suicidal_risk == 2 %}
+                <span class="badge badge-pill badge-danger ml-3">Высокий S-риск</span>
+                {% endif %}
+              </a>
+
+
+            <!-- <li class="list-group-item"><a href= {% url "RecordDetail" patient.id record.id %}>Запись от {{record.current_date|date:"d-m-Y H:i"}}</a></li> -->
+        {% endfor %}
+    </ul>
+
+    <a href={% url "PatientUpdate" patient.id %} class="btn btn-primary mt-5">Изменить данные пациента</a>
+    <a href={% url "RecordCreate" patient.id %} class="btn btn-primary mt-5">Создать запись</a>
+{% endblock %}

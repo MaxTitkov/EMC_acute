@@ -1,0 +1,70 @@
+{%extends 'base.html' %}
+{% load static %}
+{% block title %}Patients{% endblock %}
+
+{% block main_content %}
+    <div class="row">
+        <div class="patients-container col-12 col-md-8">
+                <h1 class="patients-header">Список пациентов в стационаре</h1>
+                <div class="row mt-5">
+                    {% for patient in patients %}
+                    {% if patient.is_active %}
+                    <div class="col">
+                        <div {% if patient.age < 18 %}class="shadow-sm card border-danger mb-3 patient-card"{% else %}class="shadow-sm card bg-light mb-3 patient-card"{% endif %} style="width: 15rem;" >
+                            <div class="card-header">{{patient.fullname}} 
+                                                    {% if patient.age == 1 %}{{patient.age}} год 
+                                                    {% elif patient.age > 1 and patient.age < 4  %} {{patient.age}} года
+                                                    {% elif patient.age == 22 or patient.age == 33 or patient.age == 44 %} {{patient.age}} года 
+                                                    {% else %} {{patient.age}} лет
+                                                    {% endif %}
+
+                                                    {% if patient.srisk %}
+                                                    <span class="badge badge-danger"><abbr title="Суицидальный риск" class="initialism">S</abbr></span>
+                                                    {% endif %} 
+
+                                                    {% if patient.drisk %}
+                                                    <span class="badge badge-warning"><abbr title="Риск падения" class="initialism">П</abbr></span>
+                                                    {% endif %}
+
+                                                    {% if patient.self_harm %}
+                                                    <span class="badge badge-dark"><abbr title="Риск самоповреждния" class="initialism">Sh</abbr></span>
+                                                    {% endif %}
+                                                </div>
+                            
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">{{patient.room}} палата</h6>
+                                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                                <a href={% url "PatientDetail" patient.id %} class="card-link">Записи</a>
+                            </div>
+                        </div>
+                    </div>        
+                    {% endif %}                        
+                    {% endfor %}
+                </div>
+        </div>
+          
+        {% if profile == 'D' %}
+        <div class="search_field col-12 col-md-4 mt-3  border-left">
+            <form>{% csrf_token %}
+                <div class="form-group">
+                    <label for="search">Поиск пациента</label>
+                    <input type="search" id="search" name="search" class="form-control form-control-sm search-input" placeholder="Начните вводить..."/>
+                    <ul id="search-results"></ul>
+                    <small id="emailHelp" class="form-text text-muted">Never share it</small>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+    
+    
+
+    
+  
+    
+
+    </ul>
+
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base_logging.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block main_content %}
+
+<div class="text-center">
+    <form action="." method="POST" class="login form-signin">
+        <h1 class="h3 mb-3 font-weight-normal">Вход</h1>
+        {{form.as_p}}
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <button type="submit" class="btn btn-primary" >Войти</button>
+      </form>
+</div>
+
+{% endblock %}

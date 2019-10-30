@@ -1,0 +1,63 @@
+{%extends 'base.html' %}
+{% load static %}
+{% block title %}Patients{% endblock %}
+
+{% block main_content %}
+    <div class="row">
+        <div class="patients-container col">
+            <h1>Список пациентов:</h1>
+            <ul>
+                {% for patient in patients %}
+                        {% if patient.is_active %}
+                            <li class="patient-elem active-patient-elem"><span class="badge badge badge-secondary">{{patient.room}} п.</span> <a href={% url "PatientDetail" patient.id %}>{{patient.fullname}}</a> <a class="delete text-monospace" href={% url "DeletePatient" patient.id %}>X</a>
+                        {% else %}
+                            <li class="patient-elem inactive-patient-elem"><a href={% url "PatientDetail" patient.id %}>{{patient.fullname}}</a> <a class="delete text-monospace" href={% url "DeletePatient" patient.id %}>X</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+
+            {% block pagination %}
+                {% if is_paginated %}
+                    <div class="pagination mt-5 mb-5">
+                        <span class="page-links">
+                            {% if page_obj.has_previous %}
+                                <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Назад</a>
+                            {% endif %}
+                            <span class="page-current">
+                                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+                            </span>
+                            {% if page_obj.has_next %}
+                                <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Далее</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                {% endif %}
+            {% endblock %}
+            <a href={% url "PatientCreate" %} class="btn btn-primary">Создать пациента</a>
+        </div>
+          
+        <div class="search_field mt-5 col-12 col-md-4 ">
+            <form>{% csrf_token %}
+                <div class="form-group">
+                    <label for="search">Поиск пациента</label>
+                    <input type="text" id="search" name="search" class="form-control form-control-sm search-input" placeholder="Начните вводить..."/>
+                    <ul id="search-results"></ul>
+                    <small id="emailHelp" class="form-text text-muted">Never share it</small>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    
+    
+
+    
+  
+    
+
+    </ul>
+
+
+
+{% endblock %}

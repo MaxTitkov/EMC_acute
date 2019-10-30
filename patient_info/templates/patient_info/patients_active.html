@@ -1,0 +1,27 @@
+{%extends 'base.html' %}
+{% load static %}
+{% block title %}Patients{% endblock %}
+
+{% block main_content %}
+    <h1 class="patients-header">Список пациентов в стационаре</h1>
+    <div class="row mt-5">
+        {% for patient in patients %}
+        <div class="col-3">
+            <div class="shadow-sm card bg-light mb-3 patient-card" style="width: 15rem;" >
+                <div class="card-header">{{patient.fullname}}</div>
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">{{patient.room}} палата</h6>
+                    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    <a href={% url "PatientDetail" patient.id %} class="card-link">Записи</a>
+                </div>
+            </div>
+        </div>            
+        {% endfor %}
+    </div>
+    <!-- <ul>
+        {% for patient in patients %}
+            <!-- <li><a href={% url "PatientDetail" patient.id %}>{{patient.room}} палата {{patient.fullname}}</a></li> -->
+    <!-- </ul>   -->
+    <!-- {% endfor %}  -->
+
+{% endblock %}
