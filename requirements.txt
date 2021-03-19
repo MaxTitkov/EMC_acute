@@ -8,7 +8,7 @@ Django==2.2.6
 django-heroku==0.3.1
 django-telegram-bot==0.6.0
 django-telegrambot==1.0.1
-djangorestframework==3.3.2
+djangorestframework==3.11.2
 docopt==0.6.2
 fake-factory==9999.9.9
 Faker==2.0.3
