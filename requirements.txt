@@ -4,7 +4,7 @@ cffi==1.13.1
 cryptography==2.8
 DAWG-Python==0.7.2
 dj-database-url==0.5.0
-Django==2.2.6
+Django==2.2.27
 django-heroku==0.3.1
 django-telegram-bot==0.6.0
 django-telegrambot==1.0.1
